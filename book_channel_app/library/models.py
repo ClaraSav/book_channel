@@ -39,12 +39,12 @@ class Book(models.Model):
     title = models.CharField(verbose_name=_("Book"), max_length=200, blank=False)
     isbn = models.CharField(verbose_name=_("ISBN"), max_length=200, unique=True)
     publish_date = models.DateField(verbose_name=_("Publish Date"), blank=True, null=True)
-    category_id = models.ManyToManyField(Category, verbose_name=_("Category"), null=True, blank=True)
+    category_id = models.ManyToManyField(Category, verbose_name=_("Category"), blank=True)
     editorial = models.CharField(verbose_name=_("Editorial"), max_length=100, blank=True, null=True)
     languaje_id = models.ForeignKey(Languaje, verbose_name=_("Languaje"), on_delete=models.RESTRICT, blank=False)
     number_pages = models.IntegerField(verbose_name=_("Pages"), blank=True, null=True)
     description = models.TextField(verbose_name=_("Description"))
-    front_page = models.ImageField(upload_to='book_image/')
+    front_page = models.ImageField(default='library/img/libro_portada.png')
     author_id = models.ForeignKey(Author, verbose_name=_("Author"), on_delete=models.RESTRICT)
 
     def __str__(self):

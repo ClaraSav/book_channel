@@ -3,8 +3,26 @@
 
 {% block content %}
 
-<div class="book">
-	<h2>{{ book.title }}</h2>
-</div>
+<section>
+	<article>
+		<!-- <div> -->
+		<img class="front_page" src="{% if book.front_page %}{{ book.front_page.url }}{% endif %}{% if not book.front_page %}{% static 'library/img/libro_portada.png' %}{% endif %}">
+		<!-- </div> -->
+		<div class="book_info">
+			<h2>{{ book.title }}</h2>
+		</div>
+	</article>
+</section>
+
+<aside>
+	<div id="ad">
+			  <h1>Espacio reservado para publicidad</h1>
+			 <h2>Anúnciate aquí</h2>
+			 <p>Da a conocer tu empresa o negocio en Internet anunciándote en 
+			 este espacio.</p><p>
+			 contactar en <a href="mailto: clara@gmail.com">clara@gmail.com</a></p>
+	  </div>
+ 
+ </aside>
 
 {% endblock %}
