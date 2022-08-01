@@ -5,23 +5,41 @@
 
 <section>
 	<article>
-		<!-- <div> -->
 		<img class="front_page" src="{% if book.front_page %}{{ book.front_page.url }}{% endif %}{% if not book.front_page %}{% static 'library/img/libro_portada.png' %}{% endif %}">
-		<!-- </div> -->
 		<div class="book_info">
-			<h2>{{ book.title }}</h2>
+			<h2>{{ book.title }}</h2><br>
+			<span> <strong>{% translate 'Author: ' %}</strong>{{ book.author_id.name }}</span><br>
+			{% if book.number_pages %}
+			<span>{% translate 'Pages: ' %}{{ book.number_pages }}</span><br>
+			{% endif %}
+			{% translate 'Categories: ' %}
+			{% for category in categories %}
+			<span class="category" style="border: 2px solid {{ category.color }};">{{ category.name }}</span>
+			{% endfor %}
+
+			<br><br>
+			<h3>{% translate 'Description:' %}</h3>
+			<p id="description">{{ book.description }}</p>
+		</div>
+
+
+		<div class="ad2">
+			
 		</div>
 	</article>
 </section>
 
 <aside>
-	<div id="ad">
-			  <h1>Espacio reservado para publicidad</h1>
+	<div class="ad">
+			  <!-- <h1>Espacio reservado para publicidad</h1>
 			 <h2>Anúnciate aquí</h2>
 			 <p>Da a conocer tu empresa o negocio en Internet anunciándote en 
 			 este espacio.</p><p>
-			 contactar en <a href="mailto: clara@gmail.com">clara@gmail.com</a></p>
-	  </div>
+			 contactar en <a href="mailto: clara@gmail.com">clara@gmail.com</a></p> -->
+	</div>
+	<div class="ad">
+		
+	</div>
  
  </aside>
 

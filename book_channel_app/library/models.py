@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 from django.utils.translation import gettext_lazy as _
 
 
@@ -21,6 +22,7 @@ class Category(models.Model):
 
     name = models.CharField(verbose_name=_("Category"), max_length=100)
     parent_id = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+    color = ColorField(default="#00FF00")
 
     def __str__(self):
         name = self.name
@@ -39,7 +41,7 @@ class Book(models.Model):
     title = models.CharField(verbose_name=_("Book"), max_length=200, blank=False)
     isbn = models.CharField(verbose_name=_("ISBN"), max_length=200, unique=True)
     publish_date = models.DateField(verbose_name=_("Publish Date"), blank=True, null=True)
-    category_id = models.ManyToManyField(Category, verbose_name=_("Category"), blank=True)
+    category_ids = models.ManyToManyField(Category, verbose_name=_("Categories"), blank=True)
     editorial = models.CharField(verbose_name=_("Editorial"), max_length=100, blank=True, null=True)
     languaje_id = models.ForeignKey(Languaje, verbose_name=_("Languaje"), on_delete=models.RESTRICT, blank=False)
     number_pages = models.IntegerField(verbose_name=_("Pages"), blank=True, null=True)
