@@ -9,6 +9,7 @@
 		<div class="book_info">
 			<h2>{{ book.title }}</h2><br>
 			<span> <strong>{% translate 'Author: ' %}</strong>{{ book.author_id.name }}</span><br>
+			<span>ISBN: {{ book.isbn }}</span><br>
 			{% if book.number_pages %}
 			<span>{% translate 'Pages: ' %}{{ book.number_pages }}</span><br>
 			{% endif %}
