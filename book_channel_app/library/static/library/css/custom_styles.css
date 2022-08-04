@@ -161,6 +161,10 @@ header {
     /* margin: 0 30px 0 0; */
 }
 
+article h3 {
+    font-size: 1.8em;
+}
+
 article h2 {
     font-size: 2em;
 }
@@ -190,4 +194,87 @@ article h2 {
 
 #description {
     text-align: justify;
+}
+
+footer {
+    background: rgba(219, 219, 219, 0.829);
+    height: 50px;
+}
+
+.comment {
+    background: rgba(219, 219, 219, 0.829);
+    border-radius: 10px;
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    font-size: 18px;
+}
+.comment:focus {
+    outline: none;
+}
+
+#post {
+    border: 0;
+    border-radius: 5px;
+    float: right;
+    font-size: 18px;
+    background-color: #00d4aa;
+    padding: 5px 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* scroll */
+/* Author: Jhey */
+/* https://codepen.io/jh3y/pen/gOeXgXv */
+/* Modified */
+
+.track-wrapper {
+	width: 100%;
+    max-inline-size: var(--size-content-4);
+	overflow: hidden;
+	-webkit-mask: linear-gradient(90deg,
+								transparent 0,
+								black 15% 85%,
+								transparent
+							) 0 50% / 100% calc(100% - (2 * var(--size-4))) no-repeat,
+							linear-gradient(0deg, black, black) 50% 0 / 100% var(--size-4) no-repeat,
+							linear-gradient(0deg, black, black) 50% 100% / 100% var(--size-4) no-repeat;
+}
+
+.track img {
+	height: 90%;
+	width: 90%;
+}
+
+.track {
+	--size: clamp(200px, 30vmin, 40rem);
+	height: var(--size);
+	width: 100%;
+	display: flex;
+	overflow-x: auto;
+    overflow-y:hidden;
+	list-style-type: none;
+    margin: 0;
+	scroll-snap-type: x mandatory;
+	-webkit-mask: radial-gradient(#0000 0 30%, #000 30%) 50% calc(var(--size) * 0.5) / 300% 100%,
+								linear-gradient(0deg, black, black) 50% 0 / 100% var(--size-4) no-repeat,
+								linear-gradient(0deg, black, black) 50% 100% / 100% var(--size-4) no-repeat;
+
+}
+
+.track::-webkit-scrollbar {
+    width: 100px;
+    height: 10px;
+}
+
+.track::-webkit-scrollbar-thumb {
+    background: rgba(219, 219, 219, 0.829);
+    border-radius: 5px;
+}
+
+.track__item {
+	aspect-ratio: 1;
+	scroll-snap-align: center;
+    padding: 20px;
 }

@@ -10,10 +10,10 @@ def book(request, isbn):
         category = book.category_ids.all()
         
         links = Link.objects.filter(book_id=book.id).order_by('format')
-        links_order ={u[0]: [] for u in Link.objects.filter(book_id=book.id).values_list('format')}
+        links_order ={u[0].upper(): [] for u in Link.objects.filter(book_id=book.id).values_list('format')}
 
         for link in links:
-            links_order[link.format].append(link)
+            links_order[link.format.upper()].append(link)
 
     return render(request, 'library/book.html', {
         'book': book, 
