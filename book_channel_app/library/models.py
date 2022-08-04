@@ -64,9 +64,17 @@ class Platform(models.Model):
 
 class Link(models.Model):
 
+    FORMAT_FILES = [
+        ('pdf', 'PDF'),
+        ('epub', 'EPUB'),
+        ('cbr', 'CBR'),
+        ('ebook', 'eBook'),
+    ]
+
     url = models.URLField(verbose_name=_("URL"))
     book_id = models.ForeignKey(Book, blank=False, on_delete=models.CASCADE)
     platform_id = models.ForeignKey(Platform, blank=False, null=True, verbose_name=_("Platform"), on_delete=models.RESTRICT)
+    format = models.CharField(max_length=20, choices=FORMAT_FILES, default='pdf')
 
     def __str__(self):
         return f'{self.url}'

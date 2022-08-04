@@ -6,7 +6,7 @@ from .models import *
 
 class LinkAdminInLine(admin.TabularInline):
     model = Link
-    fields = ('url', 'platform_id')
+    fields = ('url', 'platform_id', 'format')
     extra = 0
 
 

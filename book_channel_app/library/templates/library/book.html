@@ -3,6 +3,7 @@
 
 {% block content %}
 
+
 <section>
 	<article>
 		<img class="front_page" src="{% if book.front_page %}{{ book.front_page.url }}{% endif %}{% if not book.front_page %}{% static 'library/img/libro_portada.png' %}{% endif %}">
@@ -27,6 +28,28 @@
 		<div class="ad2">
 			
 		</div>
+
+		<h2>{% translate 'Download Links :' %}</h2>
+
+		<div class="links_download">
+			<ul>
+				{% for format in links %}
+					<li id="{{ format }}"><a href="#"><strong>{{ format }}</strong></a></li>
+				{% endfor %}
+				<div class="clear"></div>
+			</ul>
+			{% for format, urls in links.items %}
+			<div class="link_box {{ format }} deactive">
+				<!-- {{ format }} -->
+				{% for link in urls %}
+				<div>
+				<a href="{{ link.url }}">{{ link.platform_id.name }}</a>
+				</div>
+				{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
+
 	</article>
 </section>
 
@@ -43,5 +66,6 @@
 	</div>
  
  </aside>
+
 
 {% endblock %}
