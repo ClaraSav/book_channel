@@ -1,0 +1,31 @@
+{% extends 'library/base.html' %}
+{% load i18n static %}
+
+{% block content %}
+
+<aside id="filter_bar">
+    <div>
+        <h2><strong>{% translate 'Categories: ' %}</strong></h2>
+        <div class="categories">
+            <ul>
+            {% for category in categories %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</aside>
+
+<article id="all_books">
+    <article>
+        <div class="search_book">
+        {% for book in object_list %}
+            <img src="{% if book.front_page %}{{ book.front_page.url }}{% endif %}{% if not book.front_page %}{% static 'library/img/libro_portada.png' %}{% endif %}">
+            <span>{{ book }}</span>
+            <span>{{ book.isbn }}</span>
+        {% endfor %}
+        </div>
+    </article>
+</article>
+
+{% endblock %}

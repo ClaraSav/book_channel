@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.views.generic import ListView
+from django.views.generic.detail import SingleObjectMixin
 
 from .models import *
 
@@ -20,3 +22,17 @@ def book(request, isbn):
         'categories': category,
         'links': links_order,
         })
+
+
+class HomePageView(ListView):
+    # paginate_by = 2
+    template_name = "library/home.html"
+    model = Book
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+    def get_queryset(self):
+        return Book.objects.all().order_by('-publish_date')

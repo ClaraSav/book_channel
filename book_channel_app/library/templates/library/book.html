@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<section>
+<section id="book">
 	<article>
 		<img class="front_page" src="{% if book.front_page %}{{ book.front_page.url }}{% endif %}{% if not book.front_page %}{% static 'library/img/libro_portada.png' %}{% endif %}">
 		<div class="book_info">
@@ -33,7 +33,7 @@
 		<div class="links_download">
 			<ul>
 				{% for format in links %}
-					<li id="{{ format }}"><a href="#"><strong>{{ format }}</strong></a></li>
+					<li id="{{ format }}"><strong>{{ format }}</strong></li>
 				{% endfor %}
 				<div class="clear"></div>
 			</ul>
@@ -42,7 +42,12 @@
 				<!-- {{ format }} -->
 				{% for link in urls %}
 				<div>
-				<a href="{{ link.url }}">{{ link.platform_id.name }}</a>
+				<a href="{{ link.url }}">
+					{% if link.platform_id.platform_ico %}
+					<img class="link_ico" src="{{ link.platform_id.platform_ico.url }}" width="150px"><br>
+					{% endif %}
+					{{ link.platform_id.name }}
+				</a>
 				</div>
 				{% endfor %}
 			</div>
@@ -166,7 +171,7 @@
 	</article>
 </section>
 
-<aside>
+<aside id="ads">
 	<div class="ad">
 			  <!-- <h1>Espacio reservado para publicidad</h1>
 			 <h2>Anúnciate aquí</h2>

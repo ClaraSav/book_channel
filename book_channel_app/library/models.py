@@ -33,13 +33,14 @@ class Category(models.Model):
         return name
 
     class Meta:
-        verbose_name_plural = "categories"
+        verbose_name_plural = _("categories")
 
 
 class Book(models.Model):
 
     title = models.CharField(verbose_name=_("Book"), max_length=200, blank=False)
     isbn = models.CharField(verbose_name=_("ISBN"), max_length=200, unique=True)
+    date = models.DateField(verbose_name=_("Date"), blank=True, null=True)
     publish_date = models.DateField(verbose_name=_("Publish Date"), blank=True, null=True)
     category_ids = models.ManyToManyField(Category, verbose_name=_("Categories"), blank=True)
     editorial = models.CharField(verbose_name=_("Editorial"), max_length=100, blank=True, null=True)
