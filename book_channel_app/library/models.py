@@ -47,7 +47,7 @@ class Book(models.Model):
     languaje_id = models.ForeignKey(Languaje, verbose_name=_("Languaje"), on_delete=models.RESTRICT, blank=False)
     number_pages = models.IntegerField(verbose_name=_("Pages"), blank=True, null=True)
     description = models.TextField(verbose_name=_("Description"))
-    front_page = models.ImageField(default='library/img/libro_portada.png')
+    front_page = models.ImageField(default='library/img/libro_portada.png', upload_to='books_images')
     author_id = models.ForeignKey(Author, verbose_name=_("Author"), on_delete=models.RESTRICT)
 
     def __str__(self):
