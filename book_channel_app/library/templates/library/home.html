@@ -1,0 +1,60 @@
+{% extends 'library/base.html' %}
+{% load i18n static %}
+
+{% block content %}
+
+<form method="post">
+{% csrf_token %}
+<aside id="filter_bar">
+    <div>
+        <h2><strong>{% translate 'Categories: ' %}</strong></h2>
+        <div class="categories">
+            {{ form.categories }}
+                <!-- {% for category in categories %}
+                    <li>{{ category.name }}</li>
+                {% endfor %} -->
+        </div>
+    </div>
+</aside>
+
+<article id="all_books">
+
+    <article>
+        <div>
+
+            {{ form.name }}
+            <input type="submit" value="Search" class="search_button">
+            <input type="button" value="Reset All" class="search_button">
+        </div>
+
+        <div class="search_book">
+            {% for book in page_obj %}
+            <div class="book_small">
+                <a href="/book/{{ book.isbn }}">
+                <img src="{% if book.front_page %}{{ book.front_page.url }}{% endif %}{% if not book.front_page %}{% static 'library/img/libro_portada.png' %}{% endif %}">
+                <br><span><strong>{{ book }}</strong></span></a>
+                <br><span>{{ book.isbn }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"><<</a>
+                {% endif %}
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">>></a>
+                {% endif %}
+            </span>
+        </div>
+    </article>
+
+</article>
+
+</form>
+
+{% endblock %}
